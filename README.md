@@ -31,7 +31,7 @@ To build on MacOS we should consider that a published image needs a different pl
 
 ```shell
 docker buildx create --use
-docker buildx build --platform linux/amd64 --push -t schumann/signalwire-relay .
+docker buildx build --platform linux/amd64 --target production --push -t schumann/signalwire-relay .
 ```
 
 The `buildx create` command has to be used only once. Then we can build for (the typically used) 64-bit Linux, for example.
