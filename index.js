@@ -41,6 +41,7 @@ client.on('call.received', async (call) => {
     console.log("Call answered successfully");
   } catch (error) {
     console.error("Error answering call:", error);
+    return;
   }
   
   try {
