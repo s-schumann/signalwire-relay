@@ -1,0 +1,20 @@
+{
+  "name": "signalwire-relay",
+  "version": "1.0.0",
+  "description": "Interact with Signalwire via the Relay API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18.15.0"
+  },
+  "author": "Sebastian Schumann <git@s-schumann.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@signalwire/realtime-api": "^3.7.0",
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3"
+  }
+}
