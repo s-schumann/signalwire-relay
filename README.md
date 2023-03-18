@@ -20,13 +20,12 @@ We can push or run/stop the container with the commands below.
 
 ```shell
 docker push schumann/signalwire-relay:latest
-docker run --env-file .env -p 30000:3000 signalwire-relay
+docker run --env-file .env signalwire-relay
 docker ps
 docker stop <container_id>
 ```
 
 Pushing this build is fine for testing but won't run in most external environments.
-Running the container makes its exposed content available to, e.g., `http://localhost:30000`.
 
 To build on MacOS we should consider that a published image needs a different platform. We can use `buildx` for that:
 
