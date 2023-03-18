@@ -17,6 +17,20 @@ const client = new Voice.Client({
   host: process.env.SIGNALWIRE_HOST,
 });
 
+// Helper function to get weather data
+async function getWeatherData(zipCode) {
+  const response = await axios.get(
+    `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},DE&units=metric&appid=${process.env.OPENWEATHER_API_KEY}`
+  );
+
+  const {
+    name,
+    main: { temp },
+  } = response.data;
+
+  return { name, temp };
+}
+
 // Start the client and wait for call
 client.on('call.received', async (call) => {
   console.log('Got call', call.from, call.to);
@@ -40,17 +54,9 @@ client.on('call.received', async (call) => {
     });
     const { type, digits, terminator } = await prompt.ended();
 
-    // Call OpenWeather API to get weather data
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${digits},DE&units=metric&appid=${process.env.OPENWEATHER_API_KEY}`
-    );
-  
-    // Extract relevant weather data
-    const {
-      name,
-      main: { temp },
-    } = response.data;
-  
+    // Get weather data
+    const { name, temp } = await getWeatherData(digits);
+
     // Log weather data
     console.log(`In ${name} it is ${temp} degrees.`);
 
