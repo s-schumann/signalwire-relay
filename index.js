@@ -31,7 +31,7 @@ async function getWeatherData(zipCode) {
   return { name, temp };
 }
 
-// Start the client and wait for call
+// Listen for incoming calls and handle them
 client.on('call.received', async (call) => {
   console.log('Got call', call.from, call.to);
 
@@ -55,7 +55,7 @@ client.on('call.received', async (call) => {
     });
     const { type, digits, terminator } = await prompt.ended();
 
-    // Get weather data
+    // Get weather data using the entered postcode
     const { name, temp } = await getWeatherData(digits);
 
     // Log weather data
@@ -74,6 +74,7 @@ client.on('call.received', async (call) => {
   }  
 });
 
+// Handle client error
 client.on("error", (error) => {
   console.error(error);
 });
