@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 const client = new Voice.Client({
   project: process.env.SIGNALWIRE_PROJECT,
   token: process.env.SIGNALWIRE_TOKEN,
-  contexts: ['default'],
+  contexts: [ process.env.RELAY_CONTEXT ],
   host: process.env.SIGNALWIRE_HOST,
 });
 
@@ -67,6 +67,7 @@ client.on('call.received', async (call) => {
     });
     await playback.ended();
 
+    // Hang up the call
     await call.hangup();
     console.log("Call ended successfully");
   } catch (error) {
