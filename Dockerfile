@@ -47,7 +47,7 @@ USER node
 # Copy app source from dev stage
 COPY --chown=node:node --from=dev /usr/src/app .
 
-# Documenting the port where the app will be listening on
+# Documenting the port where the health check will be listening on
 EXPOSE 3000
 
 # Adding healthcheck to the container
