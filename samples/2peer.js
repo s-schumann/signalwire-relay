@@ -30,7 +30,7 @@ client.on('call.received', async (call) => {
 
   const peer = await call.connectPhone({
       from: process.env.PHONE_NUMBER,
-      to: "+4916090960498",
+      to: process.env.SECOND_NUMBER,
       timeout: 30,
       ringback: playlist,
     });
