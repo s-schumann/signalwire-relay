@@ -36,4 +36,16 @@ docker buildx build --platform linux/amd64 --target production --push -t schuman
 
 The `buildx create` command has to be used only once. Then we can build for (the typically used) 64-bit Linux, for example.
 
+# Samples
+
+Besides the main Relay use case comparing the Relay API with the REST API, this repository contains variou samples showcasing Relay interactions on the Signalwire platform.
+
+The `/samples` directory contains the following use cases:
+
+|File|Use Case|
+|-|-|
+|[`2peer.js`](./samples/2peer.js)|Connect two peers. Receive an inbound call and make an outbound call to a second number.|
+|[`2peerMsg.js`](./samples/2peerMsg.js)|Receive an inbound call and send a message via Relay API.|
+|[`early-media.js`](./samples/early-media.js)|Play early media and also in-call media. Showcase early media works and promises fire when expected.|
+
 Copyright (c) Sebastian Schumann, 2023
