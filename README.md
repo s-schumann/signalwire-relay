@@ -11,14 +11,14 @@ This repository is supplemented by the same use case being implemented using the
 
 To build the Docker image use the following commands (adapt with your respective tags):
 
-```shell
+```bash
 docker build --target dev --target production --tag signalwire-relay .
 docker build --target production -t schumann/signalwire-relay .
 ```
 
 We can push or run/stop the container with the commands below.
 
-```shell
+```bash
 docker push schumann/signalwire-relay:latest
 docker run --env-file .env signalwire-relay
 docker ps
@@ -29,7 +29,7 @@ Pushing this build is fine for testing but won't run in most external environmen
 
 To build on MacOS we should consider that a published image needs a different platform. We can use `buildx` for that:
 
-```shell
+```bash
 docker buildx create --use
 docker buildx build --platform linux/amd64 --target production --push -t schumann/signalwire-relay .
 ```
@@ -44,8 +44,9 @@ The `/samples` directory contains the following use cases:
 
 |File|Use Case|
 |-|-|
-|[`2peer.js`](./samples/2peer.js)|Connect two peers. Receive an inbound call and make an outbound call to a second number.|
-|[`2peerMsg.js`](./samples/2peerMsg.js)|Receive an inbound call and send a message via Relay API.|
+|[`2peer.js`](./samples/2peer.js)            |Connect two peers. Receive an inbound call and make an outbound call to a second number.|
+|[`2peerMsg.js`](./samples/2peerMsg.js)      |Receive an inbound call and send a message via Relay API.|
 |[`early-media.js`](./samples/early-media.js)|Play early media and also in-call media. Showcase early media works and promises fire when expected.|
+|[`cleanCall.js`](./samples/cleanCall.js)    |Have a simple call asking for digits, making an external API query and handle all possible exceptions to leave a clean state behind.|
 
 Copyright (c) Sebastian Schumann, 2023
