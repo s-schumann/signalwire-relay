@@ -55,7 +55,7 @@ HEALTHCHECK --interval=12s --timeout=12s --start-period=30s \
   CMD node healthcheck.js
 
 # Add metadata about the image
-LABEL version="1.2.0"
+LABEL version="1.2.1"
 LABEL description="Sample of a Relay app that can be queried by a Signalwire inbound call & interacts via the Relay API"
 LABEL maintainer="Sebastian Schumann <git@s-schumann.com>"
 
