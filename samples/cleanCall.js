@@ -58,10 +58,13 @@ async function getWeatherData(zipCode) {
 client.on('call.received', async (call) => {
   console.log('Got call', call.from, call.to);
 
+  let callEnded = false;
   // Handle call state changes
   call.on("call.state", (call) => {
     if(call.state === "ending") {
       console.log("User hung up");
+      callEnded = true;
+      return;
     }
   });
 
@@ -90,7 +93,20 @@ client.on('call.received', async (call) => {
 
     // Get weather data using the entered postcode
     let name, temp, error;
-    ({ name, temp, error } = await getWeatherData(digits));
+    const weatherDataPromise = new Promise(async (resolve) => {
+      setTimeout(async () => {
+        let result;
+        if(!callEnded) {
+          result = await getWeatherData(digits);
+        } else {
+          result = { error: "Call ended." };
+          return;
+        }
+        resolve(result);
+      }, 50);
+    });
+    ({ name, temp, error } = await weatherDataPromise);
+
     if(!error) {
       // Log weather data
       console.log(`In ${name} it is ${temp} degrees.`);
@@ -111,8 +127,19 @@ client.on('call.received', async (call) => {
     }
 
     // Hang up the call
-    await call.hangup();
-    console.log("Call ended successfully");
+    const hangupPromise = new Promise(async (resolve) => {
+      setTimeout(async () => {
+        if(!callEnded) {
+         await call.hangup();
+         console.log("Call ended successfully");
+        } else {
+          result = { error: "Call ended." };
+          return;
+        }
+        resolve();
+      }, 50);
+    });
+
   } catch (error) {
     console.log("Error handling call:", error);
   }  
