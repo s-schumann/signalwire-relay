@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@signalwire/realtime-api": "^3.8.2",
-    "axios": "^1.3.4",
+    "axios": "^1.7.4",
     "dotenv": "^16.0.3"
   }
 }
