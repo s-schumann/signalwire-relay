@@ -1,4 +1,4 @@
-# Chosing a lightweight image with Node LTS as starting point
+# Choosing a lightweight image with Node LTS as starting point
 FROM node:18.15.0-bullseye-slim AS base
 #amd64 sha256 to append for production: @575f8d9e973760ffa0f13791959f4cda1c7d4ff00a07cc1766931ddbfe21e010
 
